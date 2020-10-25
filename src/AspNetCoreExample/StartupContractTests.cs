@@ -6,8 +6,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
+using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace AspNetCoreExample
@@ -24,25 +25,30 @@ namespace AspNetCoreExample
         // This method gets called by the runtime. Use this method to add services to the container.
         public virtual void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            services.AddControllers();
             services.AddScoped<ICustomerService, CustomerServiceStub>();
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo() { Title = "My API", Version = "v1" });
                 
             });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public virtual void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public virtual void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            loggerFactory.AddConsole();
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
+            
+            app.UseRouting();
+            
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
 
             app.UseSwaggerUI(c =>
             {
@@ -57,9 +63,6 @@ namespace AspNetCoreExample
                 c.SpecUrl = "/swagger/v1/swagger.json";
 
             });
-
-            app.UseMvc();
-            
         }
     }
 }

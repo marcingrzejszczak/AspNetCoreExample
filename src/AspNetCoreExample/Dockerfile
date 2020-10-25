@@ -1,8 +1,8 @@
-FROM microsoft/dotnet:2.1-aspnetcore-runtime AS base
+FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS base
 WORKDIR /app
 EXPOSE 80
 
-FROM microsoft/dotnet:2.1-sdk AS build
+FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
 COPY src/AspNetCoreExample/AspNetCoreExample.csproj src/AspNetCoreExample/
 RUN dotnet restore src/AspNetCoreExample/AspNetCoreExample.csproj
