@@ -2,6 +2,15 @@
 
 Sample project written in .net
 
+# Prerequisites
+
+To be able to setup this example you will need
+
+- shell console - preferred WSL2 and Ubuntu release
+- .net 5.0 - current release on date of writing it is: 5.0.0-rc.2
+
+Please not to execute all scripts from containing directory.
+
 # Running contract tests
 
 It's enough for you to run `./scripts/runAcceptanceTests.sh` to
