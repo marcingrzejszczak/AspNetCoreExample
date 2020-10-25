@@ -16,6 +16,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{517426C5-CFAC-49C3-9C38-0F2D728FEE0E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{6436A7BB-384E-4A71-BE61-5FA81FD70B26}"
+ProjectSection(SolutionItems) = preProject
+	scripts\runStubs.sh = scripts\runStubs.sh
+EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests", "test\UnitTests\UnitTests.csproj", "{E5C237EE-66AE-4948-9420-E0DA6D1F3EC1}"
 EndProject

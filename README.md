@@ -12,6 +12,17 @@ It's enough for you to run `./scripts/runAcceptanceTests.sh` to
 - From the mounted folder tests are generated against the running application
 - Once the tests have passed stubs are generated and uploaded to Artifactory
 
+# Runing stubs
+
+It's enough for you to run `./scripts/runStubs.sh` to
+
+- get stubs from Artifactory and run them on specified port with Wiremock
+- once the stub runner is running you can test your api against defined contract tests
+
+To learn more about stub runner go to: 
+
+https://cloud.spring.io/spring-cloud-contract/reference/html/docker-project.html#docker-stubrunner
+
 # Running the app locally
 
 ## Pre-requisites
