@@ -2,6 +2,15 @@
 
 Sample project written in .net
 
+# Prerequisites
+
+To be able to setup this example you will need
+
+- shell console - preferred WSL2 and Ubuntu release
+- .net 5.0 - current release on date of writing it is: 5.0.0-rc.2
+
+Please not to execute all scripts from containing directory.
+
 # Running contract tests
 
 It's enough for you to run `./scripts/runAcceptanceTests.sh` to
@@ -12,12 +21,23 @@ It's enough for you to run `./scripts/runAcceptanceTests.sh` to
 - From the mounted folder tests are generated against the running application
 - Once the tests have passed stubs are generated and uploaded to Artifactory
 
+# Runing stubs
+
+It's enough for you to run `./scripts/runStubs.sh` to
+
+- get stubs from Artifactory and run them on specified port with Wiremock
+- once the stub runner is running you can test your api against defined contract tests
+
+To learn more about stub runner go to: 
+
+https://cloud.spring.io/spring-cloud-contract/reference/html/docker-project.html#docker-stubrunner
+
 # Running the app locally
 
 ## Pre-requisites
 
-* Installed .NET Core SDK 2.1
-	* https://www.microsoft.com/net/download
+* Installed .NET SDK 5.0
+	* https://dotnet.microsoft.com/download/dotnet/5.0
 
 ## Build Application
 
@@ -30,20 +50,20 @@ From command line execute `dotnet run`
 # Docker
 
 ## Docker build
-`docker build -f src/AspNetCoreExample/Dockerfile .`
+`docker build -f src/AspNetCoreExample/Dockerfile  -t cdc-aspnetcoreexample .`
 
 ## Docker run - Production environment
 
-`docker run -p 80:80 <name of container>`
+`docker run -d -p 5000:80  cdc-aspnetcoreexample`
 
 ## Docker run - ContractTests environment
 
-`docker run -e "ASPNETCORE_ENVIRONMENT=ContractTests" -p 80:80 <name of container>`
+`docker run -d -e "ASPNETCORE_ENVIRONMENT=ContractTests" -p 5000:80 cdc-aspnetcoreexample`
 
 # Swagger
 
-http://localhost/swagger - swagger ui
-http://localhost/api-docs - redoc
+http://localhost:5000/swagger - swagger ui
+http://localhost:5000/api-docs - redoc
 
 
 # Pipelines
